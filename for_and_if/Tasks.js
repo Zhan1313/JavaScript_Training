@@ -98,13 +98,22 @@ const onlyRussianVowels = (str) => {
 onlyRussianVowels('Today мы придем'); // 'ыие'
 onlyRussianVowels('Today надо go'); // 'ао'
 
-//Task 7 не смог
+//Task 7
 const awesomeNumber = (num) => {
-    //let str = num.toString();
+    let sumOfOwnDigits = 0;
+    let str = num.toString();
     for(let i = 0; i < str.length; i++) {
-        console.log(str)
+        sumOfOwnDigits += Number(str[i])
     }
+    if (sumOfOwnDigits === num) {
+        return true;
+    }
+    return false;
 }
+awesomeNumber(88)// false
+awesomeNumber(13)// false
+awesomeNumber(24)// false
+
 //Task 8
 const swappedLetters = (str, num1, num2) => {
     if (num1 === num2 || num1 > str.length || num2 > str.length) {
@@ -135,7 +144,7 @@ const numbersLessThan = (num) => {
             }
         }
     }
-    console.log(numbers);
+    return console.log(numbers);
 }
 numbersLessThan(543); // []
 numbersLessThan(2453); // []
