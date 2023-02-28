@@ -26,31 +26,48 @@ const onlyCapLetters = (str) => {
     }
     return capLetters;
 }
-//Task 3 need to review
-const onlyReverseNumbers = (str) => {
-    let reverseNumbers = [];
-    for(let i = str.length - 1, j = 0; i >= 0; i--, j++) {
-        if(str[i].match(/0-9/)) {
-            reverseNumbers[j] = str[i];
+//Task 3
+const onlyReverseNumbersFromString = (str) => {
+    let reverseNumbersFromString = [];
+    for(let i = str.length - 1; i >= 0; i--) {
+        if(str[i].match(/[0-9]/) !== null) {
+            reverseNumbersFromString.push(str[i]);
         }
     }
-    return reverseNumbers;
+    return reverseNumbersFromString;
 }
-//Task 6 need to review, can use includes
+//Task 4
+const dummyPlay = (Card1_Level, Card1_Suit, Card2_Level, Card2_Suit, SuperSuit) => {
+    let levels = [6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
+    let suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
+    if(Card2_Level > Card1_Level) {
+        return true;
+    }
+    return false;
+
+    for (let i = 0; i < levels.length; i++) {
+        if (Card1_Level === levels[i] && Card2_Level !== levels[i]) {
+
+        }
+    }
+}
+
+//Task 6
 const onlyRussianVowels = (str) => {
     let vowels = '';
-    let russianVowels = 'аоуеыэяиюАОУЕЫЭЯИЮ'
-    for(let i = 0; i < str.length; i++) {
-        if(str[i].match(/аоуеыэяию/)) {
+    let russianVowels = ['а', 'о', 'у', 'е', 'ы', 'э', 'я', 'и', 'ю'];
+    let string = str.toLowerCase();
+
+    for(let i = 0; i < string.length; i++) {
+        if(russianVowels.includes(string[i])) {
             vowels += str[i];
         }
     }
-
     return vowels;
 }
-//Task 7 to review
+//Task 7 не смог
 const awesomeNumber = (num) => {
-    let str = num.toString();
+    //let str = num.toString();
     for(let i = 0; i < str.length; i++) {
         console.log(str)
     }
@@ -63,10 +80,13 @@ const swappedLetters = (str, num1, num2) => {
     let resultString = '';
     for(let i = 0; i < str.length; i++) {
         if(i === num1) {
-            i = num2;
+            resultString[i] = str[num2];
+        } else if (i === num2) {
+            resultString[i] = str[num1];
         }
-        
+        resultString[i] = str[i];
     }
+    return resultString;
 }
 
 //Task 9
