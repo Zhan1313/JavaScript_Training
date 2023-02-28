@@ -8,6 +8,10 @@ const sumOfEvenNumbersLessThan = (number) => {
     }
     return result;
 }
+sumOfEvenNumbersLessThan(55); // 756
+sumOfEvenNumbersLessThan(15); // 56
+sumOfEvenNumbersLessThan(12); // 42
+
 //Task 1 using for
 const sumOfEvenNumsLessThan = (number) => {
     let result = 0
@@ -16,6 +20,10 @@ const sumOfEvenNumsLessThan = (number) => {
     }
     return result;
 }
+sumOfEvenNumsLessThan(60); // 930
+sumOfEvenNumsLessThan(20); // 110
+sumOfEvenNumsLessThan(30); // 240
+
 //Task 2
 const onlyCapLetters = (str) => {
     let capLetters = '';
@@ -26,6 +34,10 @@ const onlyCapLetters = (str) => {
     }
     return capLetters;
 }
+onlyCapLetters('TraimIng'); // 'TI'
+onlyCapLetters('CaLiForNia'); // 'CLFN'
+onlyCapLetters('sAnFranSiskO'); // 'AFSO'
+
 //Task 3
 const onlyReverseNumbersFromString = (str) => {
     let reverseNumbersFromString = [];
@@ -36,6 +48,10 @@ const onlyReverseNumbersFromString = (str) => {
     }
     return reverseNumbersFromString;
 }
+onlyReverseNumbersFromString('Teddy13Beddy44');// ['4', '4', '3', '1']
+onlyReverseNumbersFromString('Today13Tommorow56');// ['6', '5', '3', '1']
+onlyReverseNumbersFromString('Today78Tommorow67');// ['7', '6', '8', '7']
+
 //Task 4
 const dummyPlay = (Card1_Level, Card1_Suit, Card2_Level, Card2_Suit, SuperSuit) => {
     let levels = [6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
@@ -55,6 +71,12 @@ const dummyPlay = (Card1_Level, Card1_Suit, Card2_Level, Card2_Suit, SuperSuit) 
         }
     }
 }
+dummyPlay('J', 'Spades', 'K', 'Spades', 'Clubs'); // true
+dummyPlay('J', 'Spades', 'K', 'Spades', 'Spades'); // true
+dummyPlay('J', 'Spades', 'K', 'Hearts', 'Clubs'); // false
+dummyPlay('J', 'Spades', 10, 'Clubs', 'Clubs'); // true
+dummyPlay('J', 'Clubs', 10, 'Clubs', 'Clubs'); // false
+dummyPlay('J', 'Spades', 10, 'Hearts', 'Clubs'); // false
 
 //Task 6
 const onlyRussianVowels = (str) => {
@@ -69,6 +91,9 @@ const onlyRussianVowels = (str) => {
     }
     return vowels;
 }
+onlyRussianVowels('Today мы придем'); // 'ыие'
+onlyRussianVowels('Today надо go'); // 'ао'
+
 //Task 7 не смог
 const awesomeNumber = (num) => {
     //let str = num.toString();
@@ -84,14 +109,16 @@ const swappedLetters = (str, num1, num2) => {
     let resultString = '';
     for(let i = 0; i < str.length; i++) {
         if(i === num1) {
-            resultString[i] = str[num2];
+            resultString += str[num2];
         } else if (i === num2) {
-            resultString[i] = str[num1];
-        }
-        resultString[i] = str[i];
+            resultString += str[num1];
+        } else resultString += str[i];
     }
     return resultString;
 }
+swappedLetters('strange', 2, 4) // 'stnarge'
+swappedLetters('Florida', 0, 3) // 'rloFida'
+swappedLetters('Boston', 2, 5) // 'Bontos'
 
 //Task 9
 const numbersLessThan = (num) => {
@@ -105,3 +132,6 @@ const numbersLessThan = (num) => {
     }
     console.log(numbers);
 }
+numbersLessThan(543); // []
+numbersLessThan(2453); // []
+numbersLessThan(134567); // []
