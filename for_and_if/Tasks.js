@@ -82,6 +82,31 @@ dummyPlay('J', 'Clubs', 10, 'Clubs', 'Clubs'); // false
 dummyPlay('J', 'Spades', 10, 'Hearts', 'Clubs'); // false
 dummyPlay('J', 'Diamonds', 'J', 'Hearts', 'Hearts'); // true
 
+//Task 5
+const numberOfNeighbors = (rowNumber, columnNumber) => {
+    let field =
+        [[0, 0, 0, 0, 1],
+         [0, 0, 1, 0, 1],
+         [0, 1, 0, 1, 0],
+         [0, 1, 1, 0, 1],
+         [0, 1, 1, 0, 0]];
+    let neighbors = 0;
+    for (let i = 0; i < field.length; i++) {
+        if(rowNumber - 1 === i) {
+            for(let j = 0; j < field[i].length; j++) {
+                if(columnNumber - 1 === j) {
+                    neighbors = field[i][j-1] + field[i][j+1] + field[i-1][j] + field[i+1][j]
+                    + field[i-1][j-1] + field[i-1][j+1] + field[i+1][j-1] + field[i+1][j+1]
+                }
+            }
+        }
+    }
+    return neighbors;
+}
+numberOfNeighbors(2,3)// 2
+numberOfNeighbors(4,2)// 4
+numberOfNeighbors(4,3)//5
+
 //Task 6
 const onlyRussianVowels = (str) => {
     let vowels = '';
@@ -144,7 +169,7 @@ const numbersLessThan = (num) => {
             }
         }
     }
-    return console.log(numbers);
+    console.log(numbers);
 }
 numbersLessThan(543); // []
 numbersLessThan(2453); // []
