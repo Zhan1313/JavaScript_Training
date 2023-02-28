@@ -37,6 +37,7 @@ const onlyCapLetters = (str) => {
 onlyCapLetters('TraimIng'); // 'TI'
 onlyCapLetters('CaLiForNia'); // 'CLFN'
 onlyCapLetters('sAnFranSiskO'); // 'AFSO'
+onlyCapLetters('BabuShKa13, Gde Ty Tut12!'); // 'BSKGTT'
 
 //Task 3
 const onlyReverseNumbersFromString = (str) => {
@@ -64,6 +65,8 @@ const dummyPlay = (Card1_Level, Card1_Suit, Card2_Level, Card2_Suit, SuperSuit) 
                         return true;
                     } else if ((j < i && Card2_Suit === SuperSuit) && Card1_Suit !== SuperSuit) {
                         return true;
+                    } else if ((i === j && Card2_Suit === SuperSuit) && Card1_Suit !== SuperSuit) {
+                        return true;
                     }
                     return false;
                 }
@@ -77,6 +80,7 @@ dummyPlay('J', 'Spades', 'K', 'Hearts', 'Clubs'); // false
 dummyPlay('J', 'Spades', 10, 'Clubs', 'Clubs'); // true
 dummyPlay('J', 'Clubs', 10, 'Clubs', 'Clubs'); // false
 dummyPlay('J', 'Spades', 10, 'Hearts', 'Clubs'); // false
+dummyPlay('J', 'Diamonds', 'J', 'Hearts', 'Hearts'); // true
 
 //Task 6
 const onlyRussianVowels = (str) => {
@@ -119,6 +123,7 @@ const swappedLetters = (str, num1, num2) => {
 swappedLetters('strange', 2, 4) // 'stnarge'
 swappedLetters('Florida', 0, 3) // 'rloFida'
 swappedLetters('Boston', 2, 5) // 'Bontos'
+swappedLetters('Boston', 2, 15) // 'Boston'
 
 //Task 9
 const numbersLessThan = (num) => {
