@@ -65,7 +65,7 @@ const swappedLetters = (str, num1, num2) => {
         if(i === num1) {
             i = num2;
         }
-        resultString += str[i]
+        
     }
 }
 
