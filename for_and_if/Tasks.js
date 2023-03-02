@@ -53,59 +53,6 @@ onlyReverseNumbersFromString('Teddy13Beddy44');// ['4', '4', '3', '1']
 onlyReverseNumbersFromString('Today13Tommorow56');// ['6', '5', '3', '1']
 onlyReverseNumbersFromString('Today78Tommorow67');// ['7', '6', '8', '7']
 
-//Task 4
-const dummyPlay = (Card1_Level, Card1_Suit, Card2_Level, Card2_Suit, SuperSuit) => {
-    let levels = [6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
-
-    for (let i = 0; i < levels.length; i++) {
-        if (Card1_Level === levels[i]) {
-            for(let j = 0; j < levels.length; j++) {
-                if(Card2_Level === levels[j]) {
-                    if (j > i && Card1_Suit === Card2_Suit) {
-                        return true;
-                    } else if ((j < i && Card2_Suit === SuperSuit) && Card1_Suit !== SuperSuit) {
-                        return true;
-                    } else if ((i === j && Card2_Suit === SuperSuit) && Card1_Suit !== SuperSuit) {
-                        return true;
-                    }
-                    return false;
-                }
-            }
-        }
-    }
-}
-dummyPlay('J', 'Spades', 'K', 'Spades', 'Clubs'); // true
-dummyPlay('J', 'Spades', 'K', 'Spades', 'Spades'); // true
-dummyPlay('J', 'Spades', 'K', 'Hearts', 'Clubs'); // false
-dummyPlay('J', 'Spades', 10, 'Clubs', 'Clubs'); // true
-dummyPlay('J', 'Clubs', 10, 'Clubs', 'Clubs'); // false
-dummyPlay('J', 'Spades', 10, 'Hearts', 'Clubs'); // false
-dummyPlay('J', 'Diamonds', 'J', 'Hearts', 'Hearts'); // true
-
-//Task 5
-const numberOfNeighbors = (rowNumber, columnNumber) => {
-    let field =
-        [[0, 0, 0, 0, 1],
-         [0, 0, 1, 0, 1],
-         [0, 1, 0, 1, 0],
-         [0, 1, 1, 0, 1],
-         [0, 1, 1, 0, 0]];
-    let neighbors = 0;
-    for (let i = 0; i < field.length; i++) {
-        if(rowNumber - 1 === i) {
-            for(let j = 0; j < field[i].length; j++) {
-                if(columnNumber - 1 === j) {
-                    neighbors = field[i][j-1] + field[i][j+1] + field[i-1][j] + field[i+1][j]
-                    + field[i-1][j-1] + field[i-1][j+1] + field[i+1][j-1] + field[i+1][j+1]
-                }
-            }
-        }
-    }
-    return neighbors;
-}
-numberOfNeighbors(2,3)// 2
-numberOfNeighbors(4,2)// 4
-numberOfNeighbors(4,3)//5
 
 //Task 6
 const onlyRussianVowels = (str) => {
@@ -174,3 +121,55 @@ const numbersLessThan = (num) => {
 numbersLessThan(543); // []
 numbersLessThan(2453); // []
 numbersLessThan(134567); // []
+
+//Task 10
+const digitsOfNUmber = (num) => {
+    let digits = [];
+    if(num < 10 && num >= 0) {
+        digits.push(num);
+        return digits;
+    }
+    let lastDigit = num % 10;
+    let num0 = num - lastDigit;
+    let numWithoutLastDigit = Math.round(num0 / 10);
+    digits.push(lastDigit);
+    let str = numWithoutLastDigit.toString();
+
+    if (str.length === 1) {
+        digits.unshift(numWithoutLastDigit);
+        return digits;
+    }
+    for (let i = str.length - 1; i > 0; i--) {
+        lastDigit = numWithoutLastDigit % 10;
+        num0 = numWithoutLastDigit - lastDigit;
+        numWithoutLastDigit = Math.round(num0 / 10);
+        digits.unshift(lastDigit);
+    }
+    digits.unshift(numWithoutLastDigit);
+    return digits;
+}
+digitsOfNUmber(1)// [1]
+digitsOfNUmber(2345) // [2, 3, 4, 5]
+digitsOfNUmber(25) // [2, 5]
+digitsOfNUmber(0)// [0]
+
+//Task 11
+const equalityOfSumProductOfNumber = (num) => {
+    let digits = digitsOfNUmber(num);
+    let sumOfDigits = 0;
+    let productOfDigits = 1;
+    for(let i = 0; i < digits.length; i++) {
+        sumOfDigits += digits[i];
+        productOfDigits *= digits[i];
+    }
+    if (sumOfDigits === productOfDigits) {
+        return true;
+    }
+    return false;
+}
+equalityOfSumProductOfNumber(0) // true
+equalityOfSumProductOfNumber(1) // true
+equalityOfSumProductOfNumber(43) // false
+equalityOfSumProductOfNumber(22211) // true
+equalityOfSumProductOfNumber(123) // true
+equalityOfSumProductOfNumber(5467) // false
