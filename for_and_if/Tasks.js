@@ -53,7 +53,6 @@ onlyReverseNumbersFromString('Teddy13Beddy44');// ['4', '4', '3', '1']
 onlyReverseNumbersFromString('Today13Tommorow56');// ['6', '5', '3', '1']
 onlyReverseNumbersFromString('Today78Tommorow67');// ['7', '6', '8', '7']
 
-
 //Task 6
 const onlyRussianVowels = (str) => {
     let vowels = '';
@@ -110,52 +109,43 @@ swappedLetters('Boston', 2, 15) // 'Boston'
 const numbersLessThan = (num) => {
     let numbers = [];
     for(let i = 3; i < num; i++) {
-        if(i % 3 === 0 && i % 5 === 0) {
+        if(i % 3 === 0 || i % 5 === 0) {
             if(i % 15 !== 0) {
                 numbers.push(i);
             }
         }
     }
-    console.log(numbers);
+    return numbers;
 }
-numbersLessThan(543); // []
-numbersLessThan(2453); // []
-numbersLessThan(134567); // []
+numbersLessThan(12); // [3, 5, 6, 9, 10]
+numbersLessThan(24); // [3, 5, 6, 9, 10, 12, 18, 20, 21]
+numbersLessThan(32); // [3, 5, 6, 9, 10, 12, 18, 20, 21, 24, 25, 27]
 
 //Task 10
-const digitsOfNUmber = (num) => {
-    let digits = [];
-    if(num < 10 && num >= 0) {
-        digits.push(num);
-        return digits;
+const digitsOfNumber = (number) => {
+    const digitsAccumulator = (num, arr) => {
+        if(num < 10 && num >= 0) {
+            arr.push(num);
+            return arr;
+        }
+        let lastDigit = num % 10;
+        let num0 = num - lastDigit;
+        let numWithoutLastDigit = Math.round(num0 / 10);
+        arr.push(lastDigit);
+        return digitsAccumulator(numWithoutLastDigit, arr);
     }
-    let lastDigit = num % 10;
-    let num0 = num - lastDigit;
-    let numWithoutLastDigit = Math.round(num0 / 10);
-    digits.push(lastDigit);
-    let str = numWithoutLastDigit.toString();
-
-    if (str.length === 1) {
-        digits.unshift(numWithoutLastDigit);
-        return digits;
-    }
-    for (let i = str.length - 1; i > 0; i--) {
-        lastDigit = numWithoutLastDigit % 10;
-        num0 = numWithoutLastDigit - lastDigit;
-        numWithoutLastDigit = Math.round(num0 / 10);
-        digits.unshift(lastDigit);
-    }
-    digits.unshift(numWithoutLastDigit);
-    return digits;
+    let digits = digitsAccumulator(number, [])
+    return digits.reverse();
 }
-digitsOfNUmber(1)// [1]
-digitsOfNUmber(2345) // [2, 3, 4, 5]
-digitsOfNUmber(25) // [2, 5]
-digitsOfNUmber(0)// [0]
+digitsOfNumber(2546); // [2, 5, 4, 6]
+digitsOfNumber(345678); // [3, 4, 5, 6, 7, 8]
+digitsOfNumber(1); // [1]
+digitsOfNumber(9); // [9]
+digitsOfNumber(0); // [0]
 
 //Task 11
 const equalityOfSumProductOfNumber = (num) => {
-    let digits = digitsOfNUmber(num);
+    let digits = digitsOfNumber(num);
     let sumOfDigits = 0;
     let productOfDigits = 1;
     for(let i = 0; i < digits.length; i++) {
